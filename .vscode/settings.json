@@ -1,0 +1,9 @@
+{
+  "tslint.autoFixOnSave": true,
+  "tslint.configFile": "../ts-react.json",
+  "editor.formatOnSave": true,
+  "prettier.semi": false,
+  "prettier.trailingComma": "all",
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 120
+}

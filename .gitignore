@@ -1,0 +1,27 @@
+# c.
+.DS_STORE
+
+# Node.
+node_modules
+npm-debug.log*
+package-lock.json
+
+# yarn
+yarn-error.log
+
+# lerna
+lerna-debug.log
+
+# project
+static
+dist
+build
+.idea/
+.history
+customMock.js
+.sloth
+
+# vscode
+
+.vscode/tasks.json
+.vscode/launch.json
