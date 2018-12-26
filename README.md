@@ -25,7 +25,7 @@ yarn start
 
 ## 文档
 
-- 规范/sketch/规范及布局 共享地址 //192.168.1.150/Share/Design/V10
+
 
 ## hack 处理
 
