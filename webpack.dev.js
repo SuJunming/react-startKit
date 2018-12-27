@@ -1,29 +1,80 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const pkg = require('./package.json')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts|tsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader', 'ts-loader'],
+        loader: 'babel-loader!awesome-typescript-loader',
       },
       {
-        test: /\.js$/,
+        test: /\.jsx|js?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        loader: 'babel-loader',
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')({
+                  browsers: [
+                    'iOS >= 7',
+                    'Android >= 4.1',
+                    'last 10 Chrome versions',
+                    'last 10 Firefox versions',
+                    'Safari >= 6',
+                    'ie > 8',
+                  ],
+                }),
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                '@brand-primary': '#FF9000',
+                '@color-text-base': '#FF9000',
+                '@primary-button-fill': '#FF9000',
+                '@primary-button-fill-tap': '#FF9000',
+              },
+              javascriptEnabled: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|woff|svg|eot|woff2|tff)$/,
+        use: 'url-loader?limit=8129', //limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
+        exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.less', '.sass'],
   },
   plugins: [
     new HtmlWebPackPlugin({

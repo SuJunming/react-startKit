@@ -3,9 +3,8 @@ import * as ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import Router from './router'
 import { init } from '@rematch/core'
-import * as models from './models'
+import * as models from './models/index'
 import { Provider } from 'react-redux'
-import Count from './count'
 
 // generate Redux store
 const store = init({
@@ -15,9 +14,8 @@ const store = init({
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <Count />
       <Router />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('index'),
+  document.getElementById('container'),
 )
