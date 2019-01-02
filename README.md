@@ -138,7 +138,6 @@ export default class Router extends React.PureComponent {
         <Switch>
           <Route exact path="/" render={() => 'start'} />
           <Route path="/test" component={lazy(() => import('./Demo'))} />
-          <Route path="/houseShare/:id" component={lazy(() => import('./house/share'))} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
@@ -266,14 +265,4 @@ effects: dispatch => ({
       dispatch.demo.getData(data)
     },
   }),
-```
-
-### 9.api 在 webpack 配置为多环境.不在为环境修改域名等多个问题.只需要跑 package 内部对应的命令
-
-```javascript
-"scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --open --config webpack.dev.js  --mode development",
-    "test": "cross-env NODE_ENV=test  webpack --config webpack.test.js --mode production",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js --mode production"
-  },
 ```
