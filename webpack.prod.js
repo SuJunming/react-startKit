@@ -2,15 +2,18 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
+  output: {
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
-        test: /\.ts|tsx?$/,
+        test: /\.ts|.tsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader!awesome-typescript-loader',
       },
       {
-        test: /\.jsx|js?$/,
+        test: /\.jsx|.js?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
@@ -43,6 +46,29 @@ module.exports = {
         ],
       },
       {
+        test: /.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                '@brand-primary': '#FF9000',
+                '@color-text-base': '#FF9000',
+                '@primary-button-fill': '#FF9000',
+                '@primary-button-fill-tap': '#FF9000',
+              },
+              javascriptEnabled: true,
+            },
+          },
+        ],
+      },
+      {
         test: /\.(png|jpg|gif|woff|svg|eot|woff2|tff)$/,
         use: 'url-loader?limit=8129', //limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
         exclude: /node_modules/,
@@ -57,6 +83,27 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    new UglifyJsPlugin({ parallel: true, sourceMap: false }),
+    new UglifyJsPlugin({ sourceMap: true }),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+          maxInitialRequests: 5,
+          minSize: 0,
+        },
+        vendor: {
+          // 将第三方模块提取出来
+          test: /node_modules/,
+          chunks: 'initial',
+          test: /react|lodash/, // 正则规则验证，如果符合就提取 chunk
+          name: 'vendor',
+          priority: 10, // 优先
+          enforce: true,
+        },
+      },
+    },
+  },
 }

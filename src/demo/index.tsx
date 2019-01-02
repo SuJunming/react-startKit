@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { mConnect } from '../utils'
+import { mConnect } from '../utils/mConnect'
 import { Menu, ActivityIndicator, NavBar, Button } from 'antd-mobile'
 
 const data = [
@@ -178,7 +178,7 @@ class Demo extends React.Component<any, any> {
         {show ? <div className="menu-mask" onClick={this.onMaskClick} /> : null}
         <div>
           <h1>The data is: {JSON.stringify(props.data)}</h1>
-          <Button type="primary" onClick={() => props.getByAsync(1)}>
+          <Button type="primary" onClick={props.getByAsync}>
             get data
           </Button>
         </div>

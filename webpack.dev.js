@@ -1,17 +1,19 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const pkg = require('./package.json')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
+  output: {
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
-        test: /\.ts|tsx?$/,
+        test: /\.ts|.tsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader!awesome-typescript-loader',
       },
       {
-        test: /\.jsx|js?$/,
+        test: /\.jsx|.js?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
@@ -44,7 +46,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.less$/,
+        test: /.less$/,
         use: [
           {
             loader: 'style-loader',
@@ -83,6 +85,27 @@ module.exports = {
     }),
     new UglifyJsPlugin({ sourceMap: true }),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+          maxInitialRequests: 5,
+          minSize: 0,
+        },
+        vendor: {
+          // 将第三方模块提取出来
+          test: /node_modules/,
+          chunks: 'initial',
+          test: /react|lodash/, // 正则规则验证，如果符合就提取 chunk
+          name: 'vendor',
+          priority: 10, // 优先
+          enforce: true,
+        },
+      },
+    },
+  },
   devServer: {
     contentBase: path.join(__dirname, '/'),
     compress: true,
@@ -95,12 +118,6 @@ module.exports = {
     historyApiFallback: true,
     historyApiFallback: {
       index: '/index.html',
-    },
-    proxy: {
-      '/api/**': {
-        target: 'http://0.0.0.0:3000',
-        changeOrigin: true,
-      },
     },
   },
 }

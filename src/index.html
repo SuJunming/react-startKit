@@ -6,15 +6,36 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
     />
+    <script
+      type="text/javascript"
+      src="http://api.map.baidu.com/api?v=2.0&ak=nDPbsoiFf2e7q7gCdVSUyyHU65ybDx8g"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css" />
     <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
     <script>
+      ;(function(doc, win) {
+        var docEl = doc.documentElement,
+          resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+          recalc = function() {
+            var clientWidth = docEl.clientWidth
+            if (!clientWidth) return
+            if (clientWidth >= 750) {
+              docEl.style.fontSize = '10px'
+            } else {
+              docEl.style.fontSize = 10 * (clientWidth / 750) + 'px'
+            }
+          }
+        if (!doc.addEventListener) return
+        win.addEventListener(resizeEvt, recalc, false)
+        doc.addEventListener('DOMContentLoaded', recalc, false)
+      })(document, window)
       if ('addEventListener' in document) {
         document.addEventListener(
           'DOMContentLoaded',
           function() {
             FastClick.attach(document.body)
           },
-          false,
+          { passive: false },
         )
       }
       if (!window.Promise) {

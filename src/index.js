@@ -5,6 +5,7 @@ import Router from './router'
 import { init } from '@rematch/core'
 import * as models from './models/index'
 import { Provider } from 'react-redux'
+import './common/style'
 
 // generate Redux store
 const store = init({

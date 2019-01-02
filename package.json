@@ -1,18 +1,25 @@
 {
-  "name": "minshare",
+  "name": "min-app-share",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --open --config webpack.dev.js  --mode development",
-    "test": "cross-env NODE_ENV=test  webpack --config webpack.test.js --mode production",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js --mode production"
+    "dev": "cross-env NODE_ENV=dev  webpack --config webpack.prod.js --mode production",
+    "test": "cross-env NODE_ENV=test  webpack --config webpack.prod.js --mode production",
+    "uat": "cross-env NODE_ENV=uat webpack --config webpack.prod.js --mode production",
+    "production": "cross-env NODE_ENV=production webpack --config webpack.prod.js --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.qiaofangyun.com/assistant/qiaofang-minWeb.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "sujunming",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
@@ -26,11 +33,11 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0",
-    "cross-env": "^5.2.0",
     "css-loader": "^2.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "postcss-loader": "^3.0.0",
-    "react-redux": "^6.0.0",
     "style-loader": "^0.23.1",
     "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.1.0",
@@ -43,8 +50,11 @@
     "@rematch/core": "^1.0.6",
     "antd-mobile": "^2.2.6",
     "axios": "^0.18.0",
+    "cross-env": "^5.2.0",
     "react": "^16.7.0",
+    "react-bmap": "^1.0.92",
     "react-dom": "^16.7.0",
+    "react-id-swiper": "^1.6.8",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "sass-loader": "^7.1.0"
