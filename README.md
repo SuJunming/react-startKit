@@ -5,7 +5,7 @@
 
 > ## 技术栈
 >
-> `webpack4 + react + react-router-dom + react-redux + rematch + antd-moblie + less + typescript + axios + autoprefixer + 按需加载 + 报错处理 + loading + lazy`
+> `webpack4 + react + react-router-dom + react-redux + rematch + antd-moblie + less + typescript + axios + autoprefixer + 按需加载 + 报错处理 + loading + lazy + precommit + tslint`
 >
 > ## 安装
 
