@@ -41,7 +41,7 @@ yarn start
 
 > ## 特性
 
-### 1.架构简易好用. 采用 rematch 和自己的二次封装使每一个模块都是单独一个组件去维护.非常完善的状态管理机制
+### 1. 采用 rematch 和自己的二次封装使每一个模块都是单独一个组件去维护. 完善的状态管理机制
 
 ```javascript
 import { request, Api } from '../api'
