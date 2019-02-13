@@ -158,7 +158,7 @@ export default class Router extends React.PureComponent {
 
 ```
 
-### 5.引入 antd-mobile 同时主题色修改为巧房主题色.减少更多的组件时间,同时适应于按需加载
+### 5.引入 antd-mobile 同时主题色修改为橙色主题色.减少更多的组件时间,同时适应于按需加载
 
 ```javascript
 {
