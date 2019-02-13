@@ -1,4 +1,4 @@
-> ## react 脚手架
+> ## react 脚手架(半成品-持续维护)
 
 [文档仓库]("http://gitlab.qiaofangyun.com/assistant/qiaofang-minWeb")
 **这是一个非常不错的脚手架,支持目前非常主流的一些特性**
