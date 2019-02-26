@@ -10,7 +10,7 @@ export const demo = {
   },
   effects: dispatch => ({
     getByAsync: async params => {
-      const data = request.post(Api.test)
+      const data = await request.post(Api.test)
       dispatch.demo.getData(data)
     },
   }),
