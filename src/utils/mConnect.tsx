@@ -1,10 +1,7 @@
 import { connect } from 'react-redux'
 import * as React from 'react'
-const MyFallbackComponent = props => (
-  <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', margin: '1em 0', fontSize: 0.8 }}>
-    {props.error.message}
-  </pre>
-)
+const preStyle: any = { whiteSpace: 'pre-wrap', wordWrap: 'break-word', margin: '1em 0', fontSize: 0.8 }
+const MyFallbackComponent = props => <pre style={preStyle}>{props.error.message}</pre>
 const connectRedux = (key: string, component: any) => {
   const mapState = (state: any) => ({
     data: state[key],
@@ -15,7 +12,7 @@ const connectRedux = (key: string, component: any) => {
     mapDispatch,
   )(component)
 }
-export const mConnect = (key: string, Component: any) => {
+export const mConnect = ({ model, Component }, title?: string): any => {
   class WithErrorHandler extends React.Component<any, any> {
     constructor(props) {
       super(props)
@@ -24,6 +21,11 @@ export const mConnect = (key: string, Component: any) => {
         hasError: false,
         error: null,
         errorInfo: null,
+      }
+    }
+    componentDidMount() {
+      if (title) {
+        document.title = title
       }
     }
     componentDidCatch(error, info) {
@@ -38,5 +40,5 @@ export const mConnect = (key: string, Component: any) => {
     }
   }
   WithErrorHandler['displayName'] = `withErrorHandler(${Component.displayName})`
-  return connectRedux(key, WithErrorHandler)
+  return connectRedux(model, WithErrorHandler)
 }
