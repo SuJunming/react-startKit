@@ -10,10 +10,7 @@
     "uat": "cross-env NODE_ENV=uat webpack --config webpack.prod.js --mode production",
     "production": "cross-env NODE_ENV=production webpack --config webpack.prod.js --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "http://gitlab.qiaofangyun.com/assistant/qiaofang-minWeb.git"
-  },
+
   "keywords": [],
   "author": "sujunming",
   "license": "ISC",
