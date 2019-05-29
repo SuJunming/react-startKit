@@ -40,5 +40,4 @@ export const mConnect = ({ model, Component }, title?: string): any => {
     }
   }
   WithErrorHandler['displayName'] = `withErrorHandler(${Component.displayName})`
-  return connectRedux(model, WithErrorHandler)
-}
+  return connectRedux(model, WithErrorHandler)}
