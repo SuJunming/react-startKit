@@ -1,9 +1,12 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   output: {
+    filename: '[name]_[chunkhash:8].js',
     publicPath: '/',
+    path: path.resolve(__dirname, './build'),
   },
   module: {
     rules: [
@@ -83,7 +86,8 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    new UglifyJsPlugin({ sourceMap: true }),
+    new UglifyJsPlugin({ sourceMap: false }),
+    new CleanWebpackPlugin(),
   ],
   optimization: {
     splitChunks: {
