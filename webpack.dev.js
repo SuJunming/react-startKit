@@ -1,9 +1,12 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   output: {
     publicPath: '/',
+    filename: '[name]_[chunkhash:8].js',
+    path: path.resolve(__dirname, './build'),
   },
   module: {
     rules: [
@@ -84,6 +87,7 @@ module.exports = {
       filename: './index.html',
     }),
     new UglifyJsPlugin({ sourceMap: true }),
+    new CleanWebpackPlugin(),
   ],
   optimization: {
     splitChunks: {
@@ -115,7 +119,23 @@ module.exports = {
     watchOptions: {
       poll: true,
     },
-    historyApiFallback: true,
+    proxy: {
+      '/api/jedishareservice/': {
+        target: 'http://share.dev.qiaofangyun.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/jedishareservice': '/api/jedishareservice',
+        },
+      },
+      '/api/mbff/': {
+        target: 'http://nm.dev.qiaofangyun.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/mbff': '/api/mbff',
+        },
+      },
+    },
+    overlay: true,
     historyApiFallback: {
       index: '/index.html',
     },
