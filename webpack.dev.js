@@ -120,15 +120,15 @@ module.exports = {
       poll: true,
     },
     proxy: {
-      '/api/jedishareservice/': {
-        target: 'http://share.dev.qiaofangyun.com',
+      '/api/www/': {
+        target: 'http://wwwwww.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api/jedishareservice': '/api/jedishareservice',
         },
       },
       '/api/mbff/': {
-        target: 'http://nm.dev.qiaofangyun.com',
+        target: 'http://wwwwww.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api/mbff': '/api/mbff',
